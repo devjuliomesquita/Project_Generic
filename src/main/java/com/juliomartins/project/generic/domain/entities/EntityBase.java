@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.LastModifiedBy;
 
 import java.time.LocalDateTime;
 @Getter
@@ -21,7 +22,11 @@ public abstract class EntityBase {
     private LocalDateTime updatedAt;
     @UpdateTimestamp
     private LocalDateTime deletedAt;
+
+    @Column(updatable = false)
     private User userCreated;
+    @LastModifiedBy
     private User userUpdated;
+    @Column(updatable = false)
     private User userDeleted;
 }

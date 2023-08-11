@@ -9,6 +9,7 @@ import lombok.*;
 
 
 import java.io.Serializable;
+
 @Entity
 @Table(name = "tb_user", schema = "generic", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @Getter
@@ -16,14 +17,14 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@Builder
 public class User extends EntityBase implements Serializable {
-    public static final long serialVersionUID = -1L;
-
+    private static final long serialVersionUID = -1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Size(min = 3, max = 50,message = "{field.size}")
+    @Size(min = 3, max = 50, message = "{field.size}")
     @Pattern(regexp = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\\s]+$", message = "{field.pattern.notNumber}")
     private String name;
     @NotNull
